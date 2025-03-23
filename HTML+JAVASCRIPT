@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CHONK9K Live Price</title>
+</head>
+<body>
+    <h2>CHONK9K Price: <span id="price">$0.00</span></h2>
+
+    <script>
+        async function fetchPrice() {
+            let response = await fetch("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=CHONK9K", {
+                headers: {"X-CMC_PRO_API_KEY": "YOUR_CMC_API_KEY"}
+            });
+            let data = await response.json();
+            let price = data.data.CHONK9K.quote.USD.price;
+            document.getElementById("price").innerText = `$${price.toFixed(4)}`;
+        }
+
+        fetchPrice();
+        setInterval(fetchPrice, 60000); // Update every 60 seconds
+    </script>
+</body>
+</html>
